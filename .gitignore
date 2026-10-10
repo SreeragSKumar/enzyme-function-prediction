@@ -1,0 +1,61 @@
+# Python virtual environments
+.venv/
+.venv*/
+venv/
+env/
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter and editor temporary files
+.ipynb_checkpoints/
+.vscode/
+.idea/
+tempCodeRunnerFile.*
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Logs and temporary outputs
+*.log
+*.tmp
+*.temp
+
+# Model artifacts and checkpoints
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.pkl
+*.joblib
+
+# Large/generated datasets and sequence files
+*.fasta
+*.fa
+*.faa
+*.fastq
+*.fastq.gz
+
+# MMseqs2 temporary files
+mmseqs_tmp/
+tmp/
+temp/
+
+# Generated baseline outputs
+baseline/
+kmer_baseline/
+esm2_outputs/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Empty or accidental temporary file
+/diagnos
