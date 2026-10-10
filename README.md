@@ -1,162 +1,128 @@
-# Low-Data Protein Language Model for Enzyme Function Prediction
+# Low-Data Protein Language Model for Enzyme Function Prediction and Candidate Prioritization
 
-## Project Overview
+## Project overview
 
-This project investigates machine-learning methods for predicting enzyme function from protein sequences. The current task classifies protein sequences into seven top-level Enzyme Commission (EC) classes (labels 1–7).
+This project evaluates protein-sequence representations for predicting one of seven top-level Enzyme Commission (EC) classes. It compares conventional sequence-feature baselines with embeddings from the pretrained ESM-2 model `facebook/esm2_t12_35M_UR50D` and studies performance under reduced labelled-data availability.
 
-The project compares conventional sequence-feature baselines with embeddings from a pretrained protein language model, ESM-2. The current best reported model is an ESM-2 embedding classifier using a tuned Linear Support Vector Machine (SVM).
+The project also explores how predictions might support candidate prioritization. Predictions are computational hypotheses, not experimental confirmation of enzyme activity or proof of novel function.
 
-> **Current best result:** 71.43% held-out test accuracy and 0.7035 macro F1. The model was selected using validation data; the held-out test set was evaluated once after model selection.
+## Dataset and split design
 
-## Dataset and Splits
+- Model-ready reviewed UniProt sequences: **2,673**
+- Top-level EC classes: 1–7
+- MMseqs2 clustering parameters: minimum sequence identity 30%, coverage 80%
+- Total clusters before splitting: 1,427
+- Cluster-aware partitions: training 1,757; validation 377; test 539
+- No cluster overlap between train, validation, and test partitions was detected.
 
-The model-ready dataset contains **2,673 protein sequences** collected from reviewed UniProt enzyme records across top-level EC classes 1–7.
-
-Sequences were clustered using MMseqs2 with a minimum sequence identity of 30% and coverage of 80%. The dataset was then split by cluster to prevent clusters from crossing between train, validation, and test partitions.
-
-| Split | Records | Share |
+| Split | Proteins | Share |
 |---|---:|---:|
 | Training | 1,757 | 65.7% |
 | Validation | 377 | 14.1% |
 | Test | 539 | 20.2% |
 | **Total** | **2,673** | **100%** |
 
-The saved integrity checks reported zero cluster overlap between train, validation, and test. Because complete clusters were kept together, the final split proportions differ slightly from the original target proportions.
+The split proportions differ slightly from nominal targets because clusters were kept intact.
 
-## Methodology
+## Main model and evaluation
 
-1. **Data collection and quality control:** review annotations, sequence validity, class labels, and sequence lengths.
-2. **Cluster-aware splitting:** cluster related sequences with MMseqs2 and assign whole clusters to one split.
-3. **Conventional baselines:** amino-acid composition and k-mer representations (including 3-mer, 4-mer, and 5-mer TF-IDF experiments) with scikit-learn classifiers.
-4. **Protein language model embeddings:** use `facebook/esm2_t12_35M_UR50D` to generate 480-dimensional, mean-pooled embeddings. Long sequences are processed in windows and the window embeddings are averaged into a protein-level representation.
-5. **Model selection:** compare downstream classifiers and tune the Linear SVM using validation macro F1.
-6. **Final evaluation:** after selecting the configuration, fit the final classifier using the combined train and validation embeddings, then evaluate once on the held-out test set.
+ESM-2 embeddings have 480 features per protein. The selected downstream classifier is a scaled Linear SVM (`LinearSVC`, `C=2.0`, `class_weight="balanced"`, `max_iter=10000`). Model selection used validation macro F1. The final classifier was fit on the combined training and validation embeddings (2,134 proteins) and evaluated on the held-out test set. The test set was not used for hyperparameter selection.
 
-## Results
-
-### ESM-2 validation comparison
-
-The following models were compared on the validation split. The test set was not used for this comparison or for selecting the hyperparameter.
-
-| Model | Accuracy | Balanced accuracy | Macro F1 | Weighted F1 |
-|---|---:|---:|---:|---:|
-| ESM-2 + Logistic Regression | 0.6419 | 0.6342 | 0.6333 | 0.6373 |
-| ESM-2 + initial Linear SVM | 0.6525 | 0.6443 | 0.6399 | 0.6441 |
-| ESM-2 + tuned Linear SVM (`C = 2.0`) | 0.6605 | 0.6522 | 0.6463 | 0.6506 |
-
-The tuned Linear SVM used `class_weight="balanced"` and `random_state=42`. `C = 2.0` was selected based on validation macro F1.
-
-### Final held-out test results
-
-The selected SVM was fitted on **2,134 records** (training plus validation) and evaluated on **539 held-out test records**.
-
-| Metric | Test result |
+| Test metric | Result |
 |---|---:|
-| Accuracy | 0.7143 (71.43%) |
-| Balanced accuracy | 0.7112 (71.12%) |
+| Accuracy | 71.43% |
+| Balanced accuracy | 71.12% |
 | Macro F1 | 0.7035 |
 | Weighted F1 | 0.7093 |
 
-#### Per-class test performance
+The per-class test F1 scores were: class 1 0.60, class 2 0.82, class 3 0.72, class 4 0.58, class 5 0.49, class 6 0.81, and class 7 0.90. Class 5 was the weakest by F1; its recall was 0.43. These results apply to this dataset and split and do not establish full EC-number correctness or experimental enzyme activity.
 
-| EC top-level label | Precision | Recall | F1-score | Support |
+## Low-data experiments
+
+Two learning-curve experiments were run using saved ESM-2 embeddings and the fixed 377-protein validation set. Each fraction was evaluated with seeds 42, 123, and 2026. Metrics below are mean validation macro F1 across seeds; the 100% subset is the complete training split, so its score is identical across seeds.
+
+### Protein-level stratified sampling
+
+| Target fraction | Proteins selected | Linear SVM | Logistic regression |
+|---:|---:|---:|---:|
+| 10% | 173 | 0.5281 | 0.5336 |
+| 25% | 436 | 0.5642 | 0.5912 |
+| 50% | 877 | 0.5681 | 0.5878 |
+| 100% | 1,757 | 0.6463 | 0.6333 |
+
+### Cluster-aware sampling
+
+Whole clusters were selected rather than individual proteins. Because cluster sizes differ, the actual protein counts vary around the target fractions.
+
+| Target fraction | Mean proteins selected | Mean clusters selected | Linear SVM | Logistic regression |
 |---:|---:|---:|---:|---:|
-| 1 | 0.63 | 0.58 | 0.60 | 72 |
-| 2 | 0.82 | 0.82 | 0.82 | 85 |
-| 3 | 0.66 | 0.79 | 0.72 | 62 |
-| 4 | 0.56 | 0.59 | 0.58 | 75 |
-| 5 | 0.56 | 0.43 | 0.49 | 81 |
-| 6 | 0.76 | 0.86 | 0.81 | 71 |
-| 7 | 0.90 | 0.90 | 0.90 | 93 |
+| 10% | 187.3 | 103.0 | 0.4675 | 0.4336 |
+| 25% | 440.0 | 234.3 | 0.5753 | 0.5743 |
+| 50% | 879.7 | 466.0 | 0.5825 | 0.5982 |
+| 100% | 1,757 | 914 | 0.6463 | 0.6333 |
 
-Class 7 performed best by F1, while class 5 was the most difficult class to recover. These results measure top-level EC-class classification on this dataset and split; they do not experimentally verify enzyme activity or establish full EC-number correctness.
+These learning curves show an overall improvement with more training data, although gains are not linear at every fraction and small subsets vary across seeds. The cluster-aware experiment is more aligned with the low-data research question, but it is still evaluated on the same fixed validation set. It does not by itself prove generalization to entirely novel enzyme families.
 
-**Test-set protocol:** the held-out test set was not used for model selection, but it has now been evaluated once. Do not continue tuning this model against the same test results. Use validation data for further model development; a future independent study should ideally use a fresh external or temporally separated test set.
+### Experiment outputs
 
-## Technology Stack
+Kaggle output paths recorded during the experiments:
 
-- Python
-- pandas and NumPy
-- scikit-learn
-- Matplotlib
-- MMseqs2
-- PyTorch
-- Hugging Face Transformers
-- ESM-2 protein language model
-- Kaggle GPU notebook (NVIDIA Tesla T4 was reported for embedding extraction)
+- `/kaggle/working/esm2_results/low_data/low_data_runs.csv`
+- `/kaggle/working/esm2_results/low_data/low_data_summary.csv`
+- `/kaggle/working/esm2_results/low_data/low_data_learning_curve.png`
+- `/kaggle/working/esm2_results/cluster_low_data/cluster_low_data_runs.csv`
+- `/kaggle/working/esm2_results/cluster_low_data/cluster_low_data_summary.csv`
+- `/kaggle/working/esm2_results/cluster_low_data/cluster_low_data_learning_curve.png`
 
-## Project Structure
+Kaggle `/kaggle/working` files are session-local unless downloaded or copied to persistent storage. These paths identify the outputs created in the notebook; they should not be assumed to be in Git unless explicitly committed.
 
-```text
-project sem 9/
-├── README.md
-├── 03_cluster_and_split.py
-├── 04_baseline_model.py
-├── 06_4mer_baseline.py
-├── 07_3mer_svm_baseline.py
-├── 08_tune_3mer_svm.py
-├── 09_5mer_svm_baseline.py
-├── protein_project_complete_progress.md
-└── protein_project/
-    ├── raw/
-    ├── processed/
-    ├── audit/
-    ├── metadata/
-    ├── checkpoints/
-    ├── figures/
-    ├── archive/
-    ├── notebooks/
-    │   └── esm2-enzyme-function-prediction.ipynb
-    └── results/
-        └── esm2_final/
-            ├── final_test_metrics.json
-            ├── final_test_classification_report.csv
-            ├── final_test_confusion_matrix.csv
-            └── final_test_confusion_matrix.png
-```
+## Data integrity audit
 
-Additional clustering and baseline outputs have been generated under `C:\protein_project_work\clustered` and `C:\protein_project_work\baseline`. These are external working directories and are not automatically part of the Git repository.
+The model-ready CSV contains 2,673 unique accessions. A read-only audit found:
 
-Kaggle files saved under `/kaggle/working/` are temporary unless downloaded or copied to persistent storage. The repository notebook and saved result files are the durable references for the experiment; do not assume that all cached embedding arrays or model weights are committed.
+- 2,673 unique `exact_sequence_hash` values
+- 2,673 unique raw `Sequence` values
+- 2,673 unique `sequence_clean` values
+- 8 records with inherited `is_exact_duplicate=True` flags
+- 0 exact duplicate rows when recalculating duplicates from the current cleaned sequence values
 
-## Environment Setup
+The eight flags appear inconsistent with the current sequence values and may be stale metadata. The original CSV was not modified. Audit reports were saved locally under `protein_project/results/data_audit/` as `previously_flagged_duplicates.csv` and `duplicate_flag_audit.csv`. Recalculate or document the flag's provenance before using it as a quality-control exclusion.
 
-The original local baseline environment used Python 3.10.11 and scikit-learn 1.7.2. The ESM-2 experiments were run in Kaggle with GPU acceleration and the package versions recorded in the experiment log.
+## External UniProt evaluation attempt
 
-Activate the local virtual environment in PowerShell:
+A separate UniProt collection attempt produced 179 unique accessions after excluding the original dataset. Only 2 records had a single top-level EC class under the parsing rule used for the initial external evaluation; 177 had annotations spanning multiple top-level classes. The two unambiguous records were insufficient for meaningful external performance metrics. **No valid external performance evaluation was completed.** The 179-record pool should not be presented as a balanced benchmark, and the queried class must not be treated as ground truth when a protein has multiple EC annotations.
 
-```powershell
-.\.venv310\Scripts\Activate.ps1
-```
+## Interpretation and limitations
 
-Install the core local baseline dependencies if needed:
+- The model predicts a broad top-level EC class, not a complete EC number, substrate specificity, or experimentally validated function.
+- The held-out test set has been evaluated; do not use it for further tuning. For a new final unbiased evaluation after substantial changes, obtain a fresh external or temporally separated test set.
+- Cluster-aware splitting reduces leakage at the chosen MMseqs2 thresholds but cannot guarantee complete absence of remote homology or biological relatedness.
+- The low-data curves use the existing validation set. Cluster-aware subsets preserve whole training clusters, but the experiment is not an independent test of entirely unseen protein families.
+- The external collection attempt did not produce enough unambiguous records for evaluation.
+- Candidate-ranking scores, confidence, and sequence novelty are computational evidence for prioritization, not proof of novelty or catalytic activity. A suitable separate candidate set and validated ranking procedure are still needed.
+- The eight inherited duplicate flags require provenance review; do not silently delete those records.
 
-```powershell
-python -m pip install pandas numpy matplotlib scikit-learn
-```
+## Technology and reproducibility
 
-MMseqs2 is required for the clustering stage and must be installed separately. The ESM-2 notebook additionally requires PyTorch and Hugging Face Transformers, along with access to the pretrained model. For exact settings, refer to the notebook and the detailed progress log.
+- Python, pandas, NumPy, scikit-learn, Matplotlib
+- MMseqs2 for sequence clustering
+- ESM-2: `facebook/esm2_t12_35M_UR50D`
+- Baseline local environment previously recorded: Python 3.10.11, scikit-learn 1.7.2
+- Kaggle experiment environment recorded: PyTorch 2.11.0+cu128, Transformers 5.16.1, pandas 2.3.3, scikit-learn 1.6.1
 
-## Reproducibility and Data Handling
+Keep the cluster-aware splits fixed, fit transformations on training data, use validation data for model selection, and preserve the test set from further tuning. Do not commit raw datasets, large embedding arrays, model weights, virtual environments, or credentials unless there is a deliberate, documented reason.
 
-- Preserve the saved cluster-aware train, validation, and test splits across experiments.
-- Fit feature transformations on training data only.
-- Use validation data for model selection and hyperparameter tuning.
-- Do not use the existing test results to tune the current model.
-- Record the ESM-2 model identifier, windowing and pooling settings, classifier configuration, random seed, and package versions.
-- Keep credentials, virtual environments, temporary files, large downloaded model weights, and raw data that should not be redistributed out of Git.
-- Consult `protein_project_complete_progress.md` for the detailed experiment history, data-quality audit, baseline results, troubleshooting notes, and next steps.
+## Repository and result references
 
-## Limitations and Next Steps
+- ESM-2 notebook: `protein_project/notebooks/esm2-enzyme-function-prediction.ipynb`
+- Final ESM-2 results: `protein_project/results/esm2_final/`
+- Final test metric file: `final_test_metrics.json`
+- Per-class test report: `final_test_classification_report.csv`
+- Confusion matrix: `final_test_confusion_matrix.csv` and `final_test_confusion_matrix.png`
+- Detailed history and experiment log: `protein_project_complete_progress.md`
 
-- Audit the eight inherited `is_exact_duplicate=True` flags identified during data review, even though the current filtered sequences had no repeated sequence strings or hashes in the earlier integrity check.
-- Perform error analysis, especially for class 5 and the confusions shown in the final test confusion matrix.
-- Verify that the notebook and saved outputs can be reproduced from documented inputs and settings.
-- Run a planned **learning-curve experiment** using progressively smaller, cluster-aware subsets of training data while keeping validation fixed. This is still future work; the current full-training result alone does not establish low-data performance.
-- Consider a fresh external or temporally separated test set if further model development is performed.
+## Current status and next steps
 
-## Current Status
+**Completed:** dataset preparation and audit; MMseqs2 clustering and cluster-aware splitting; amino-acid composition and k-mer baselines; ESM-2 embedding extraction; validation-based SVM selection; one final held-out test evaluation; protein-level and cluster-aware low-data experiments; initial duplicate-flag audit.
 
-**Completed:** dataset preparation and audit, MMseqs2 clustering, cluster-aware splits, amino-acid-composition baseline, k-mer experiments, ESM-2 embedding extraction, validation-based Linear SVM tuning, and one final held-out test evaluation.
-
-**Remaining:** duplicate-flag audit, detailed error analysis, reproducibility review, final research write-up, and the planned low-data learning-curve experiment.
+**Remaining:** reconcile the duplicate flag's provenance; ensure low-data CSVs/plots are downloaded or committed if they are to be part of the repository; finalize error analysis, methodology, limitations, and report; decide whether to implement a minimal candidate-ranking prototype using a separate suitable candidate set. The attempted external UniProt pool is not sufficient for external benchmarking.
