@@ -391,3 +391,56 @@ Establish a baseline for seven-class enzyme function prediction using amino-acid
 **Baseline output location:** `C:\protein_project_work\baseline`
 
 **Test set:** Not evaluated.
+
+## Baseline Experiment 2: 3-mer TF-IDF + Logistic Regression
+
+**Status:** Completed — validation evaluation finished.
+
+### Objective
+Evaluate whether local amino-acid sequence patterns improve seven-class enzyme function prediction compared with amino-acid composition features.
+
+### Dataset and methodology
+- Training records: 1,757
+- Validation records: 377
+- Test set: Not used
+- Feature representation: Character-level 3-mer TF-IDF
+- Number of features: 8,000
+- Classifier: Logistic Regression
+- Class weighting: Balanced
+- Random seed: 42
+
+The TF-IDF vectorizer was fitted on the training sequences only. The fitted vectorizer transformed the validation sequences, and the classifier was trained using the training split. Evaluation was performed on the validation split.
+
+### Validation results
+
+| Metric | Score |
+|---|---:|
+| Accuracy | 41.91% |
+| Balanced accuracy | 41.09% |
+| Macro F1 | 42.07% |
+| Weighted F1 | 42.63% |
+
+### Comparison with Experiment 1
+
+The amino-acid composition baseline achieved 35.01% accuracy, 35.46% balanced accuracy, 34.27% macro F1, and 33.86% weighted F1.
+
+The 3-mer TF-IDF model improved accuracy by 6.90 percentage points and macro F1 by 7.80 percentage points on the validation set.
+
+### Class-level observations
+
+- Class 6 achieved the highest F1-score at approximately 0.560.
+- Class 7 had precision of approximately 0.774 and recall of 0.500.
+- Class 3 remained difficult to classify, with an F1-score of approximately 0.235.
+- Confusion remained notable among classes 1, 2, 3 and 4.
+
+### Interpretation and limitations
+
+The results suggest that local amino-acid sequence patterns provide more useful predictive information than overall amino-acid composition alone for this dataset and evaluation setup.
+
+However, validation performance remains moderate, and several classes are difficult to distinguish. These findings do not establish biological equivalence between classes or demonstrate generalization to unrelated protein families.
+
+The held-out test set has not been used. No conclusions about test performance should be made yet.
+
+### Next step
+
+Run a 4-mer TF-IDF baseline using the same training and validation splits. Compare it against the amino-acid composition and 3-mer models before selecting a model for final test evaluation.
