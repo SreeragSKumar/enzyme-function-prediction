@@ -339,3 +339,55 @@ The project has 2,673 quality-checked enzyme sequences across seven top-level EC
 The first model, normalized 20-amino-acid composition with logistic regression, ran successfully in Python 3.10.11 and achieved validation accuracy 35.01%, balanced accuracy 35.46%, and macro F1 0.3427. Class 7 was strongest and class 4 weakest. The test set has not been used.
 
 **Next action:** build and evaluate the k-mer baseline in a new script, preserving the current baseline and all split files.
+
+## Baseline Experiment 1: Amino-Acid Composition + Logistic Regression
+
+**Status:** Completed — validation evaluation finished.
+
+### Objective
+Establish a baseline for seven-class enzyme function prediction using amino-acid composition features and a Logistic Regression classifier.
+
+### Dataset and split
+- Training records: 1,757
+- Validation records: 377
+- Number of enzyme classes: 7
+- Split integrity: Passed; zero shared cluster IDs between training and validation.
+- The existing cluster-based splits were retained to reduce sequence-similarity leakage.
+
+### Methodology
+1. Extracted amino-acid composition features from protein sequences using the 20 standard amino acids.
+2. Trained a Logistic Regression classifier on the training split only.
+3. Evaluated the trained model on the validation split.
+4. Generated a validation confusion matrix and per-class classification report.
+5. Kept the held-out test set unused.
+
+### Validation results
+
+| Metric | Score |
+|---|---:|
+| Accuracy | 0.3501 (35.01%) |
+| Balanced accuracy | 0.3546 (35.46%) |
+| Macro F1-score | 0.3427 (34.27%) |
+| Weighted F1-score | 0.3386 (33.86%) |
+
+### Initial observations
+- The baseline provides a reference point for evaluating more expressive protein sequence representations.
+- Performance varies considerably across enzyme classes.
+- Class 7 achieved the strongest class-level F1-score (0.6095), while Class 4 had the weakest (0.1628).
+- The confusion matrix shows substantial misclassification between several classes, including Classes 1 and 2.
+- Amino-acid composition captures overall residue frequencies but does not represent the order of amino acids or detailed sequence context. This may limit its ability to distinguish enzyme functions.
+
+### Limitations
+- These are validation results, not final test results.
+- The scores do not establish how well the model generalizes to unseen protein families beyond the current cluster-based split.
+- No conclusion about the final model should be drawn from this baseline alone.
+
+### Next steps
+1. Preserve the current train, validation, and test splits.
+2. Establish a stronger sequence representation, such as pretrained protein language-model embeddings.
+3. Compare the new model against this baseline using the same validation split and metrics.
+4. Select the model using validation results, then evaluate the chosen model on the held-out test set.
+
+**Baseline output location:** `C:\protein_project_work\baseline`
+
+**Test set:** Not evaluated.
