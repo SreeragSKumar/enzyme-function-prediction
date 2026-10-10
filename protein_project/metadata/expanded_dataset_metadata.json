@@ -1,0 +1,59 @@
+{
+  "source": "UniProtKB REST API",
+  "retrieval_date_utc": "2026-10-04T15:26:04.580596+00:00",
+  "query_pattern": "reviewed:true AND ec:<class>.*",
+  "fields_requested": [
+    "accession",
+    "id",
+    "protein_name",
+    "organism_name",
+    "organism_id",
+    "length",
+    "sequence",
+    "ec",
+    "annotation_score",
+    "protein_existence",
+    "go",
+    "go_f",
+    "go_p",
+    "go_c"
+  ],
+  "target_total_records": 10000,
+  "maximum_per_class": 1429,
+  "raw_unique_accessions": 3393,
+  "labelled_records": 3393,
+  "model_ready_records": 2673,
+  "class_counts_before_filtering": {
+    "1": 400,
+    "2": 437,
+    "3": 319,
+    "4": 379,
+    "5": 395,
+    "6": 420,
+    "7": 409
+  },
+  "class_counts_after_filtering": {
+    "1": 385,
+    "2": 412,
+    "3": 306,
+    "4": 376,
+    "5": 385,
+    "6": 410,
+    "7": 399
+  },
+  "sequence_filter": {
+    "minimum_length": 10,
+    "maximum_length": 2000,
+    "ambiguous_residues_allowed": false,
+    "invalid_characters_allowed": false,
+    "single_top_level_class_required": true,
+    "exact_sequence_deduplication": true
+  },
+  "limitations": [
+    "Reviewed status alone does not guarantee experimental evidence.",
+    "Annotation score is not a probability of functional correctness.",
+    "Sequence similarity clustering has not yet been performed.",
+    "The final class distribution is not guaranteed to be balanced.",
+    "The dataset is not yet ready for leakage-resistant model evaluation."
+  ]
+}

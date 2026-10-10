@@ -59,3 +59,11 @@ Desktop.ini
 
 # Empty or accidental temporary file
 /diagnos
+
+# Dataset files and generated processing artifacts
+/protein_project/raw/
+/protein_project/processed/
+/protein_project/splits/
+/protein_project/checkpoints/
+
+# Keep audit, metadata, figures, and selected reports versionable

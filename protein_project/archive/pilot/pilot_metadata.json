@@ -1,0 +1,24 @@
+{
+  "source": "UniProtKB REST API",
+  "query": "reviewed:true AND ec:*",
+  "retrieval_date_utc": "2026-10-04T15:13:34.126744+00:00",
+  "random_seed": 42,
+  "maximum_requested_records": 500,
+  "raw_record_count": 500,
+  "unambiguous_label_count": 473,
+  "model_ready_record_count": 460,
+  "ambiguous_or_missing_class_count": 27,
+  "exact_duplicate_records_removed": 0,
+  "label_definition": "Single unambiguous top-level class from a complete EC number",
+  "sequence_length_range": [
+    10,
+    2000
+  ],
+  "ambiguous_residue_policy": "Exclude from initial model-ready subset; preserve in audit data",
+  "deduplication_policy": "Exact amino-acid sequence; retain first occurrence",
+  "limitations": [
+    "Pilot size may be insufficient for reliable class-level evaluation",
+    "Reviewed annotations do not guarantee experimental verification",
+    "No sequence-similarity clustering or leakage-resistant split yet"
+  ]
+}

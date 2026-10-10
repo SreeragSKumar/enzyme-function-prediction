@@ -1,0 +1,51 @@
+{
+  "1": {
+    "query": "reviewed:true AND ec:1.*",
+    "records_retrieved": 500,
+    "pages_retrieved": 1,
+    "complete": true,
+    "retrieved_at_utc": "2026-10-04T15:26:00.467389+00:00"
+  },
+  "2": {
+    "query": "reviewed:true AND ec:2.*",
+    "records_retrieved": 500,
+    "pages_retrieved": 1,
+    "complete": true,
+    "retrieved_at_utc": "2026-10-04T15:26:00.966720+00:00"
+  },
+  "3": {
+    "query": "reviewed:true AND ec:3.*",
+    "records_retrieved": 500,
+    "pages_retrieved": 1,
+    "complete": true,
+    "retrieved_at_utc": "2026-10-04T15:26:01.332175+00:00"
+  },
+  "4": {
+    "query": "reviewed:true AND ec:4.*",
+    "records_retrieved": 500,
+    "pages_retrieved": 1,
+    "complete": true,
+    "retrieved_at_utc": "2026-10-04T15:26:01.686346+00:00"
+  },
+  "5": {
+    "query": "reviewed:true AND ec:5.*",
+    "records_retrieved": 500,
+    "pages_retrieved": 1,
+    "complete": true,
+    "retrieved_at_utc": "2026-10-04T15:26:02.034643+00:00"
+  },
+  "6": {
+    "query": "reviewed:true AND ec:6.*",
+    "records_retrieved": 500,
+    "pages_retrieved": 1,
+    "complete": true,
+    "retrieved_at_utc": "2026-10-04T15:26:02.407817+00:00"
+  },
+  "7": {
+    "query": "reviewed:true AND ec:7.*",
+    "records_retrieved": 500,
+    "pages_retrieved": 1,
+    "complete": true,
+    "retrieved_at_utc": "2026-10-04T15:26:02.827306+00:00"
+  }
+}
