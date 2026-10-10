@@ -1,0 +1,16 @@
+{
+  "experiment": "ESM-2 embeddings + StandardScaler + Linear SVM",
+  "embedding_model": "facebook/esm2_t12_35M_UR50D",
+  "classifier": "LinearSVC",
+  "selected_C": 2.0,
+  "class_weight": "balanced",
+  "selection_metric": "validation_macro_f1",
+  "training_records": 2134,
+  "test_records": 539,
+  "accuracy": 0.7142857142857143,
+  "balanced_accuracy": 0.7111902134101492,
+  "macro_f1": 0.7034687011919823,
+  "weighted_f1": 0.7093489887162305,
+  "test_used_for_model_selection": false,
+  "random_state": 42
+}
