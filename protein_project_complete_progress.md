@@ -444,3 +444,142 @@ The held-out test set has not been used. No conclusions about test performance s
 ### Next step
 
 Run a 4-mer TF-IDF baseline using the same training and validation splits. Compare it against the amino-acid composition and 3-mer models before selecting a model for final test evaluation.
+
+ 
+
+# Baseline Experiments: Comparative Evaluation
+
+**Status:** Completed  
+**Dataset:** 2,673 quality-filtered enzyme protein sequences  
+**Task:** Seven-class enzyme function prediction  
+**Classes:** EC top-level classes 1–7
+
+## 1. Experimental Setup
+
+The dataset was divided into training, validation, and test sets using sequence-similarity clustering to reduce leakage between related proteins.
+
+| Split | Records | Percentage |
+|---|---:|---:|
+| Training | 1,757 | 65.7% |
+| Validation | 377 | 14.1% |
+| Test | 539 | 20.2% |
+| Total | 2,673 | 100% |
+
+No cluster IDs were shared across the three splits. The held-out test set has not been used for model selection or evaluation.
+
+The split proportions differ slightly from the originally intended proportions because complete sequence clusters were kept together.
+
+## 2. Evaluation Metrics
+
+- **Accuracy:** Proportion of all predictions that are correct.
+- **Balanced accuracy:** Average recall across the seven enzyme classes.
+- **Macro F1:** Unweighted mean of the F1 scores across classes; used as the primary model-selection metric.
+- **Weighted F1:** F1 averaged according to the number of examples in each class.
+- **Confusion matrix:** Used to inspect class-specific prediction errors.
+
+## 3. Experiment Results
+
+| Experiment | Accuracy | Balanced Accuracy | Macro F1 |
+|---|---:|---:|---:|
+| Amino-acid composition + Logistic Regression | 35.01% | 35.46% | 0.3427 |
+| 3-mer TF-IDF + Logistic Regression | 41.91% | 41.09% | 0.4207 |
+| 4-mer TF-IDF + Logistic Regression | 41.64% | 39.78% | 0.4007 |
+| 3-mer TF-IDF + Linear SVM | 46.95% | 46.63% | 0.4691 |
+| 5-mer TF-IDF + Linear SVM | 39.26% | 38.83% | 0.4036 |
+
+*Note: Values are from validation experiments. The 3-mer SVM result shown is the tuned model with C = 1.0.*
+
+## 4. Experiment 1: Amino-Acid Composition
+
+**Method:** Calculate the relative frequency of each of the 20 standard amino acids and train a Logistic Regression classifier.
+
+**Purpose:** Establish a simple baseline using global sequence composition without considering the order of amino acids.
+
+**Validation accuracy:** 35.01%  
+**Validation macro F1:** 0.3427
+
+This baseline provides a reference for evaluating whether local sequence patterns improve prediction.
+
+## 5. Experiments 2–4: K-mer TF-IDF Features
+
+K-mers are consecutive amino-acid substrings of length k. TF-IDF converts these patterns into weighted numerical features.
+
+- A 3-mer contains three consecutive amino acids.
+- A 4-mer contains four consecutive amino acids.
+- A 5-mer contains five consecutive amino acids.
+
+The experiments evaluated whether local sequence-pattern representations improve enzyme-class prediction.
+
+### 3-mer TF-IDF + Logistic Regression
+
+Validation accuracy was 41.91%, with a macro F1 of 0.4207.
+
+### 4-mer TF-IDF + Logistic Regression
+
+Validation accuracy was 41.64%, with a macro F1 of 0.4007.
+
+The 4-mer model did not improve upon the 3-mer Logistic Regression model.
+
+### 3-mer TF-IDF + Linear SVM
+
+Validation accuracy reached 46.95%, and macro F1 reached 0.4691.
+
+This was the strongest validation result among the baseline experiments completed so far.
+
+## 6. Experiment 5: Linear SVM Hyperparameter Tuning
+
+The regularization parameter C was tested using the validation macro F1 score for model selection.
+
+| C | Accuracy | Balanced Accuracy | Macro F1 |
+|---:|---:|---:|---:|
+| 0.1 | 43.50% | 42.92% | 0.4274 |
+| 0.5 | 46.15% | 45.92% | 0.4631 |
+| 1.0 | 46.95% | 46.63% | 0.4691 |
+| 2.0 | 44.03% | 43.92% | 0.4422 |
+| 5.0 | 42.44% | 42.30% | 0.4274 |
+
+**Selected parameter:** C = 1.0.
+
+The model with C = 1.0 achieved the highest validation macro F1 among the tested values.
+
+## 7. Experiment 6: 5-mer TF-IDF + Linear SVM
+
+The 5-mer experiment used a maximum vocabulary size of 100,000 features, with C = 1.0 and balanced class weights.
+
+| Metric | Result |
+|---|---:|
+| Training records | 1,757 |
+| Validation records | 377 |
+| Actual TF-IDF features | 100,000 |
+| Accuracy | 39.26% |
+| Balanced accuracy | 38.83% |
+| Macro F1 | 0.4036 |
+| Weighted F1 | 0.4004 |
+| Training time | Approximately 0.20 seconds |
+
+The 5-mer model performed worse than the 3-mer SVM model. The larger feature space and limited training data may contribute to this result, but these explanations have not yet been experimentally verified.
+
+## 8. Error Analysis
+
+The 3-mer SVM achieved its strongest F1 score for class 7, at 0.80. Class 3 was more difficult, with an F1 score of approximately 0.29.
+
+The 5-mer SVM achieved high precision for class 7 (0.96) but lower recall (0.46), indicating that it missed many actual class-7 examples.
+
+Confusion matrices and classification reports were saved for further analysis.
+
+## 9. Current Conclusion
+
+The 3-mer TF-IDF + Linear SVM model, with C = 1.0, is the strongest baseline evaluated so far. Its validation accuracy is 46.95%, with a macro F1 score of 0.4691.
+
+These results suggest that local sequence-pattern features improve upon global amino-acid composition features for this dataset. However, prediction performance remains limited, and class-specific errors remain substantial.
+
+The results do not establish that k-mer models are inferior to protein language models; that comparison has not yet been performed.
+
+## 10. Next Experiment
+
+The next planned experiment is to extract pretrained ESM-2 protein embeddings and train a lightweight classifier using the existing cluster-based training and validation splits.
+
+The goal is to compare learned protein representations against the best k-mer baseline.
+
+The test set will remain untouched until model selection and validation experiments are complete.
+
