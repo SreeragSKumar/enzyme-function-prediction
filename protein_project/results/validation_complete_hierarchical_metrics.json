@@ -1,0 +1,12 @@
+{
+  "stage1_accuracy": 0.6870026525198939,
+  "stage1_balanced_accuracy": 0.673614435147651,
+  "stage1_macro_f1": 0.6763297851699439,
+  "pipeline_top_level_accuracy": 0.6870026525198939,
+  "pipeline_top_level_balanced_accuracy": 0.673614435147651,
+  "pipeline_top_level_macro_f1": 0.6763297851699439,
+  "pipeline_subclass_accuracy_on_true_class5": 0.4807692307692308,
+  "validation_proteins": 377,
+  "proteins_routed_to_stage2": 34,
+  "true_class5_validation_proteins": 52
+}

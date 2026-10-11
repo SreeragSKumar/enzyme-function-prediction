@@ -1,0 +1,53 @@
+Entry,Protein names,EC_subclass,cluster_id,Linear SVM C=2,RBF SVM C=10
+O95394,Phosphoacetylglucosamine mutase (PAGM) (EC 5.4.2.3) (Acetylglucosamine phosphomutase) (N-acetylglucosamine-phosphate mutase) (Phosphoglucomutase-3) (PGM 3),5.4,seq001482,5.4,5.4
+P34949,Mannose-6-phosphate isomerase (EC 5.3.1.8) (Phosphohexomutase) (Phosphomannose isomerase) (PMI),5.3,seq001610,5.3,5.3
+Q96SL4,Protein peroxidase GPX7 (GPx-7) (GSHPx-7) (CL683) (EC 5.3.4.1),5.3,seq001499,5.3,5.3
+Q9NWM8,Peptidyl-prolyl cis-trans isomerase FKBP14 (PPIase FKBP14) (EC 5.2.1.8) (22 kDa FK506-binding protein) (22 kDa FKBP) (FKBP-22) (FK506-binding protein 14) (FKBP-14) (Rotamase),5.2,seq001501,5.2,5.2
+Q9Y680,Peptidyl-prolyl cis-trans isomerase FKBP7 (PPIase FKBP7) (EC 5.2.1.8) (23 kDa FK506-binding protein) (23 kDa FKBP) (FKBP-23) (FK506-binding protein 7) (FKBP-7) (Rotamase),5.2,seq001501,5.2,5.2
+P40126,L-dopachrome tautomerase (DCT) (DT) (EC 5.3.3.12) (L-dopachrome Delta-isomerase) (Tyrosinase-related protein 2) (TRP-2) (TRP2),5.3,seq001795,5.2,5.3
+Q9BZE2,tRNA pseudouridine(38/39) synthase (EC 5.4.99.45) (tRNA pseudouridine synthase 3) (tRNA pseudouridylate synthase 3) (tRNA-uridine isomerase 3),5.4,seq001521,5.4,5.4
+Q9UNP9,Peptidyl-prolyl cis-trans isomerase E (PPIase E) (EC 5.2.1.8) (Cyclophilin E) (Cyclophilin-33) (Rotamase E),5.2,seq001857,5.2,5.2
+Q9Y5K1,Meiotic recombination protein SPO11 (EC 5.6.2.2) (Cancer/testis antigen 35) (CT35),5.6,seq001855,5.6,5.6
+A2PYH4,Probable ATP-dependent DNA helicase HFM1 (EC 5.6.2.4) (DNA 3'-5' helicase HFM1) (SEC63 domain-containing protein 1),5.6,seq001529,5.6,5.6
+Q8NG08,DNA helicase B (hDHB) (EC 5.6.2.3) (DNA 5'-3' helicase B),5.6,seq001669,5.6,5.6
+Q96BP3,Peptidylprolyl isomerase domain and WD repeat-containing protein 1 (EC 5.2.1.8) (Spliceosome-associated cyclophilin),5.2,seq001547,5.4,5.2
+Q96RR1,"Twinkle mtDNA helicase (EC 5.6.2.3) (Progressive external ophthalmoplegia 1 protein) (T7 gp4-like protein with intramitochondrial nucleoid localization) (T7-like mitochondrial DNA helicase) (Twinkle protein, mitochondrial)",5.6,seq001683,5.6,5.6
+O60333,Kinesin-like protein KIF1B (Klp) (EC 5.6.1.3),5.6,seq001560,5.6,5.6
+P22033,"Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)",5.4,seq001710,5.3,5.3
+Q12756,Kinesin-like protein KIF1A (EC 5.6.1.3) (Axonal transporter of synaptic vesicles) (Microtubule-based motor KIF1A) (Unc-104- and KIF1A-related protein) (hUnc-104),5.6,seq001560,5.6,5.6
+O95985,DNA topoisomerase 3-beta-1 (EC 5.6.2.1) (DNA topoisomerase III beta-1),5.6,seq001581,5.6,5.6
+P30414,NK-tumor recognition protein (NK-TR protein) (Natural-killer cells cyclophilin-related protein) (Peptidyl-prolyl cis-trans isomerase NKTR) (PPIase) (EC 5.2.1.8) (Rotamase),5.2,seq001586,5.6,5.2
+Q3MIT2,tRNA pseudouridine synthase Pus10 (Hup10) (EC 5.4.99.25) (Coiled-coil domain-containing protein 139) (tRNA pseudouridine 55 synthase) (Psi55 synthase) (tRNA pseudouridylate synthase) (tRNA-uridine isomerase),5.4,seq001848,5.4,5.4
+F1M4A4,Kinesin-like protein KIF1A (EC 5.6.1.3),5.6,seq001560,5.6,5.6
+O34481,ATP-dependent RecD2 DNA helicase (EC 5.6.2.3) (DNA 5'-3' helicase RecD2),5.6,seq001606,5.6,5.6
+P00946,Mannose-6-phosphate isomerase (EC 5.3.1.8) (Phosphohexomutase) (Phosphomannose isomerase) (PMI),5.3,seq001610,5.3,5.3
+P04993,RecBCD enzyme subunit RecD (EC 5.6.2.3) (DNA 5'-3' helicase subunit RecB) (Exodeoxyribonuclease V 67 kDa polypeptide) (Exodeoxyribonuclease V alpha chain) (Exonuclease V subunit RecD) (ExoV subunit RecD) (Helicase/nuclease RecBCD subunit RecD),5.6,seq001612,5.6,5.6
+P0A761,N-acetylmannosamine-6-phosphate 2-epimerase (EC 5.1.3.9) (ManNAc-6-P epimerase),5.1,seq001614,5.3,5.1
+P33173,Kinesin-like protein KIF1A (EC 5.6.1.3) (Axonal transporter of synaptic vesicles),5.6,seq001560,5.6,5.6
+P67910,ADP-L-glycero-D-manno-heptose-6-epimerase (EC 5.1.3.20) (ADP-L-glycero-beta-D-manno-heptose-6-epimerase) (ADP-glyceromanno-heptose 6-epimerase) (ADP-hep 6-epimerase) (AGME),5.1,seq001654,5.1,5.1
+Q6NVF4,DNA helicase B (EC 5.6.2.3) (DNA 5'-3' helicase B) (DNA-dependent ATPase B),5.6,seq001669,5.6,5.6
+Q6Z4G3,UDP-arabinopyranose mutase 3 (OsUAM3) (EC 5.4.99.30) (Reversibly glycosylated polypeptide 3) (UDP-L-arabinose mutase 3),5.4,seq001694,5.3,5.3
+Q9VL76,"Mitochondrial DNA helicase (EC 5.6.2.3) (Twinkle mtDNA helicase) (Twinkle protein, mitochondrial)",5.6,seq001683,5.6,5.6
+Q9WTK8,Meiotic recombination protein SPO11 (EC 5.6.2.2),5.6,seq001855,5.6,5.6
+O22666,UDP-arabinopyranose mutase 3 (EC 5.4.99.30) (Reversibly glycosylated polypeptide 3) (AtRGP3) (UDP-L-arabinose mutase 3),5.4,seq001694,5.1,5.1
+P0AA43,Ribosomal small subunit pseudouridine synthase A (EC 5.4.99.19) (16S pseudouridylate 516 synthase) (16S rRNA pseudouridine(516) synthase) (rRNA pseudouridylate synthase A) (rRNA-uridine isomerase A),5.4,seq001705,5.4,5.4
+P16332,"Methylmalonyl-CoA mutase, mitochondrial (MCM) (EC 5.4.99.2) (Methylmalonyl-CoA isomerase)",5.4,seq001710,5.3,5.3
+P23179,Meiosis-specific protein SPO11 (EC 5.6.2.2) (Sporulation-specific protein 11),5.6,seq001714,5.6,5.6
+P33643,Ribosomal large subunit pseudouridine synthase D (EC 5.4.99.23) (23S rRNA pseudouridine(1911/1915/1917) synthase) (Large ribosomal subunit assembly factor RluD) (rRNA pseudouridylate synthase D) (rRNA-uridine isomerase D),5.4,seq001720,5.4,5.4
+P45541,Fructoselysine 3-epimerase (EC 5.1.3.41),5.1,seq001725,5.1,5.1
+Q6J5K9,5'-3' RNA helicase armi (EC 5.6.2.5) (Protein armitage),5.6,seq001746,5.6,5.6
+Q7KPA5,Meiotic recombination protein W68 (EC 5.6.2.2) (SPO11 protein homolog),5.6,seq001748,5.6,5.6
+Q8CIW5,"Twinkle mtDNA helicase (EC 5.6.2.3) (Progressive external ophthalmoplegia 1 protein homolog) (T7 gp4-like protein with intramitochondrial nucleoid localization) (T7-like mitochondrial DNA helicase) (Twinkle protein, mitochondrial)",5.6,seq001683,5.6,5.6
+Q9SCY3,"Photosynthetic NDH subunit of lumenal location 4, chloroplastic (FK506-binding protein 16-2) (AtFKBP16-2) (Immunophilin FKBP16-2) (Peptidyl-prolyl cis-trans isomerase FKBP16-2) (PPIase FKBP16-2) (EC 5.2.1.8) (Rotamase)",5.2,seq001765,5.2,5.2
+Q9VH95,Cytosolic Prostaglandin E synthase (EC 5.3.99.3) (Prostaglandin E synthase 3 homolog),5.3,seq001769,5.3,5.3
+P29812,L-dopachrome tautomerase (DCT) (DT) (EC 5.3.3.12) (DOPAchrome conversion factor) (DOPAchrome isomerase) (DOPAchrome oxidoreductase) (L-dopachrome Delta-isomerase) (SLATY locus protein) (Tyrosinase-related protein 2) (TRP-2) (TRP2),5.3,seq001795,5.2,5.3
+P38628,Phosphoacetylglucosamine mutase (PAGM) (EC 5.4.2.3) (Acetylglucosamine phosphomutase) (N-acetylglucosamine-phosphate mutase) (PGM-complementing protein 1),5.4,seq001482,5.4,5.4
+P54397,39 kDa FK506-binding nuclear protein (EC 5.2.1.8) (Peptidyl-prolyl cis-trans isomerase) (PPIase) (Rotamase),5.2,seq001813,5.2,5.2
+P69922,L-fucose isomerase (FucIase) (FucIso) (EC 5.3.1.25) (6-deoxy-L-galactose isomerase) (D-arabinose isomerase) (EC 5.3.1.3),5.3,seq001815,5.1,5.4
+Q12404,Protein disulfide-isomerase MPD1 (EC 5.3.4.1),5.3,seq001820,5.3,5.3
+Q924M7,Mannose-6-phosphate isomerase (EC 5.3.1.8) (Phosphohexomutase) (Phosphomannose isomerase) (PMI),5.3,seq001610,5.3,5.3
+Q9D3U0,tRNA pseudouridine synthase Pus10 (EC 5.4.99.25) (Coiled-coil domain-containing protein 139) (tRNA pseudouridine 55 synthase) (Psi55 synthase) (tRNA pseudouridylate synthase) (tRNA-uridine isomerase),5.4,seq001848,5.4,5.2
+Q9FZH5,Mannose-6-phosphate isomerase 2 (EC 5.3.1.8) (Phosphohexomutase 2) (Phosphomannose isomerase 2) (PMI2) (Protein DARK INDUCIBLE 9),5.3,seq001610,5.3,5.3
+Q9LZ03,DNA topoisomerase 6 subunit A (AtTOP6A) (EC 5.6.2.2) (Meiotic recombination protein SPO11-3) (AtSPO11-3) (Protein BRASSINOSTEROID INSENSITIVE 5) (Protein ROOT HAIRLESS 2),5.6,seq001855,5.6,5.6
+Q9M4A2,Meiotic recombination protein SPO11-1 (AtSPO11-1) (EC 5.6.2.2),5.6,seq001855,5.6,5.6
+Q9QZH3,Peptidyl-prolyl cis-trans isomerase E (PPIase E) (EC 5.2.1.8) (Cyclophilin E) (Cyclophilin-33) (Rotamase E),5.2,seq001857,5.2,5.2
