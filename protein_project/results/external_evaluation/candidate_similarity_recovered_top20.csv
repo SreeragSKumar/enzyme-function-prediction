@@ -1,0 +1,21 @@
+Entry,best_train_entry,alignment_score,aligned_residues,identity_within_aligned_blocks,candidate_coverage_approx,train_coverage_approx,candidate_length,train_length,similarity_category
+B2R659,P97852,3384.0,735,0.872109,0.998641,1.0,736,735,Moderately similar
+B4DEA8,P49748,3325.0,655,0.998473,0.934379,1.0,701,655,Very close to training protein
+A0ACI8SSU5,P49748,3324.0,655,0.996947,1.0,1.0,655,655,Very close to training protein
+A0ACI8S5B6,P49748,3316.5,655,1.0,0.990923,1.0,661,655,Very close to training protein
+A0ACI8UBN1,P49748,3315.5,655,1.0,0.987934,1.0,663,655,Very close to training protein
+A0ACI8R3T7,P49748,3314.5,655,1.0,0.984962,1.0,665,655,Very close to training protein
+A0ACI8S963,P49748,3314.0,654,1.0,1.0,0.998473,654,655,Very close to training protein
+A0ACI8UF80,P49748,3312.5,655,1.0,0.979073,1.0,669,655,Very close to training protein
+A0ACI8UBH5,P49748,3304.0,652,1.0,1.0,0.99542,652,655,Very close to training protein
+A0ACI8SIN2,Q15067,3283.5,655,0.969466,0.980539,0.992424,668,660,Very close to training protein
+A0ACI8Q3K4,P49748,3276.5,647,1.0,1.0,0.987786,647,655,Very close to training protein
+A0ACI8UIZ4,Q15067,3275.0,660,0.962121,0.909091,1.0,726,660,Very close to training protein
+A0ACI8UF54,P49748,3248.0,642,1.0,1.0,0.980153,642,655,Very close to training protein
+A0ACI8UBX8,P49748,3225.5,639,1.0,1.0,0.975573,639,655,Very close to training protein
+A0ACI8UFG4,P49748,3193.5,633,0.99684,1.0,0.966412,633,655,Very close to training protein
+A0ACI8UD01,P49748,3191.5,631,1.0,1.0,0.963359,631,655,Very close to training protein
+A0ACI8RLF8,P49748,3190.0,632,1.0,1.0,0.964885,632,655,Very close to training protein
+A0ACI8UF35,P49748,3183.5,633,1.0,0.982919,0.966412,644,655,Very close to training protein
+A0ACI8UBI5,P49748,3182.0,633,1.0,0.978362,0.966412,647,655,Very close to training protein
+A0ACI8Q3G2,P49748,3075.0,610,1.0,1.0,0.931298,610,655,Very close to training protein

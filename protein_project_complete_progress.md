@@ -433,6 +433,34 @@ The 3-mer TF-IDF model improved accuracy by 6.90 percentage points and macro F1 
 - Class 3 remained difficult to classify, with an F1-score of approximately 0.235.
 - Confusion remained notable among classes 1, 2, 3 and 4.
 
+
+## External Evaluation and Similarity Audit
+
+A separate external evaluation was subsequently completed using 138 proteins with unambiguous top-level EC labels, collected separately from the original model-ready dataset. The retained subset contained classes 1, 2, 3, 6, and 7. Classes 4 and 5 were absent, so their external performance could not be evaluated.
+
+The classifier used 480-dimensional embeddings from `facebook/esm2_t12_35M_UR50D`, followed by `StandardScaler` and an RBF Support Vector Classifier (`C=10`, balanced class weights).
+
+| Metric | External result |
+|---|---:|
+| Proteins evaluated | 138 |
+| Accuracy | 46.38% |
+| Balanced accuracy | 55.99% |
+| Macro F1 (all seven classes) | 0.3538 |
+| Weighted F1 | 0.5076 |
+
+The similarity audit examined 222 records: 138 lower-local-similarity records were retained, while 84 potentially related or very close matches were excluded. This filtering disproportionately excluded class-7 proteins, changing the class distribution of the retained subset.
+
+The original-embedding evaluation artifacts are stored in `protein_project/results/external_evaluation/original_method/`. The original-method comparison reproduced the predictions and labels for all 138 retained proteins, resolving the initial concern about reconstructed embedding pooling.
+
+### Interpretation
+
+External performance was weaker than the internal held-out test performance. Class 2 had zero recall in the retained external subset, while class 3 recall was approximately 42.47% and class 7 recall was 37.50%. These results show that good internal performance does not guarantee reliable predictions on separately collected proteins.
+
+The retained subset is not a representative benchmark of all enzymes. Similarity filtering changes the evaluated population, and the excluded subset is also compositionally biased. These results should therefore be interpreted as a diagnostic external evaluation, not a definitive estimate of generalization to novel enzyme families.
+
+Predictions are computational hypotheses, not experimental confirmation of enzyme activity or novelty. The detailed experiment history is documented in [`protein_project_complete_progress.md`](protein_project_complete_progress.md).
+
+
 ### Interpretation and limitations
 
 The results suggest that local amino-acid sequence patterns provide more useful predictive information than overall amino-acid composition alone for this dataset and evaluation setup.
@@ -787,3 +815,122 @@ Recommended order to finish efficiently:
 3. Preserve the final test metrics as frozen; do not tune against the already-evaluated test set.
 4. Decide whether a minimal candidate-ranking prototype is feasible using a separate suitable candidate set. Label confidence and sequence similarity as computational prioritization signals, not proof of novel function.
 5. Complete error analysis, methodology, limitations, and final GitHub cleanup.
+
+
+# Addendum — 12 October 2026: External Evaluation and Repository Consolidation
+
+## 1. Objective
+
+This stage extends the enzyme-function prediction project beyond its original cluster-aware internal evaluation. A separately collected protein set was evaluated to examine how well the trained classifier transfers to proteins outside the original model-ready dataset. Sequence-similarity auditing was also performed to identify potentially related external proteins.
+
+## 2. External evaluation setup
+
+The external evaluation used 138 proteins with unambiguous top-level EC labels under the annotation-parsing rule used for this experiment. The represented classes were 1, 2, 3, 6, and 7. Classes 4 and 5 were absent, so performance for these classes cannot be estimated from this subset.
+
+The evaluation used:
+
+- Embedding model: `facebook/esm2_t12_35M_UR50D`
+- Embedding dimension: 480
+- Window size: 1,000 residues
+- Window overlap: 200 residues
+- Pooling: overlap-corrected residue mean
+- Classifier: `StandardScaler` followed by an RBF Support Vector Classifier
+- SVC parameter: `C=10`
+- Class weighting: balanced
+- Training records used by the external classifier: 1,757
+- External evaluation records: 138
+
+The original-embedding evaluation artifacts record the same overall metrics as the primary external metrics file. This supports consistency of the reported aggregate results between these two saved evaluations.
+
+## 3. External evaluation results
+
+| Metric | Result |
+|---|---:|
+| Accuracy | 0.4638 |
+| Balanced accuracy | 0.5599 |
+| Macro F1 across all seven classes | 0.3538 |
+| Weighted F1 | 0.5076 |
+| Number of external proteins | 138 |
+
+### Per-class results
+
+| EC top-level class | Precision | Recall | F1 | Support |
+|---:|---:|---:|---:|---:|
+| 1 | 0.5294 | 1.0000 | 0.6923 | 9 |
+| 2 | 0.0000 | 0.0000 | 0.0000 | 22 |
+| 3 | 1.0000 | 0.4247 | 0.5962 | 73 |
+| 4 | Not estimable | Not estimable | Not estimable | 0 |
+| 5 | Not estimable | Not estimable | Not estimable | 0 |
+| 6 | 0.4737 | 1.0000 | 0.6429 | 18 |
+| 7 | 1.0000 | 0.3750 | 0.5455 | 16 |
+
+The zero-support classes are shown as not estimable in this table because the external set contains no true examples of classes 4 or 5. The underlying saved classification report records zero-valued metrics for these classes when calculating the macro average across all seven classes.
+
+## 4. Similarity audit and filtering
+
+The external collection was audited against the training sequences. The similarity audit contains 222 candidate records, divided into:
+
+- 138 retained records categorized as lower local similarity.
+- 84 excluded records categorized as potentially related or a very close match.
+
+The excluded group contains 11 class-6 proteins and 73 class-7 proteins. The retained group contains 9 class-1, 22 class-2, 73 class-3, 18 class-6, and 16 class-7 proteins.
+
+This filtering is not class-neutral: class 7 is disproportionately represented among excluded proteins. Therefore, the retained 138-protein subset has a different class composition from the full audited collection. Its metrics must be interpreted as results on a similarity-filtered subset, not as an unbiased estimate of performance across all enzyme families.
+
+The exclusion threshold is a practical sequence-similarity filter and does not prove that retained proteins are evolutionarily unrelated to the training set. Local alignment, identity, and coverage are useful screening measures but do not independently establish functional novelty.
+
+## 5. Error analysis and observed limitations
+
+The external classifier correctly predicted 64 of 138 proteins. Its performance was strongly class-dependent:
+
+- Class 2 had 22 examples and no correct predictions.
+- Class 3 had 73 examples, of which 31 were correctly predicted.
+- Class 7 had 16 examples, of which 6 were correctly predicted.
+- Classes 1 and 6 had perfect recall in this subset, but their small supports and the filtering procedure limit interpretation.
+
+A further diagnostic of the 84 excluded proteins found that class-7 prediction failures were concentrated in two protein-name groups, including NADH-quinone oxidoreductase subunit B and NAD(P)H-quinone oxidoreductase subunit K. These results indicate a meaningful generalization weakness, but the grouped composition of the external collection means that individual protein errors should not be treated as independent evidence across diverse enzyme families.
+
+The original internal held-out test results remain unchanged. The external evaluation used an RBF SVC with `C=10`, while the primary internal final test used a Linear SVM with `C=2`. Consequently, the internal and external metrics are not a controlled comparison of the same classifier configuration.
+
+## 6. Result artifact locations
+
+The external evaluation artifacts have been copied into the repository:
+
+- `protein_project/results/external_evaluation/external_eval_metrics.json`
+- `protein_project/results/external_evaluation/external_eval_predictions.csv`
+- `protein_project/results/external_evaluation/external_eval_preliminary.csv`
+- `protein_project/results/external_evaluation/external_eval_similarity_audit.csv`
+- `protein_project/results/external_evaluation/external_eval_similarity_excluded.csv`
+- `protein_project/results/external_evaluation/excluded_predictions_similarity_filtered.csv`
+- `protein_project/results/external_evaluation/candidate_similarity_recovered_top20.csv`
+- `protein_project/results/external_evaluation/original_method/external_metrics_original_embeddings.json`
+- `protein_project/results/external_evaluation/original_method/external_predictions_original_embeddings.csv`
+- `protein_project/results/external_evaluation/original_method/external_errors.csv`
+
+These files preserve the reported predictions, evaluation metrics, similarity-audit outcomes, and original-embedding comparison.
+
+## 7. Current completion status
+
+**Completed:**
+
+- Reviewed-UniProt dataset preparation and sequence-quality checks.
+- MMseqs2 clustering and cluster-aware train/validation/test partitioning.
+- Amino-acid-composition and k-mer baselines.
+- ESM-2 embedding generation and internal model selection.
+- Held-out internal test evaluation.
+- Protein-level and cluster-aware low-data experiments.
+- Hierarchical class-5 validation experiment.
+- Duplicate-flag audit.
+- Preliminary external evaluation and sequence-similarity audit.
+
+**Still requiring completion or verification:**
+
+- Recover and persist the low-data experiment CSV summaries and plots if they are to be included as repository artifacts.
+- Verify that the cleaned notebook can execute its intended workflow with documented inputs and paths, without rerunning expensive experiments unnecessarily.
+- Complete the consolidated research report and reproducibility documentation.
+- Finish a candidate-prioritization workflow and clearly separate predicted function from experimentally verified function or novelty.
+- Review the final repository diff, remove redundant backup files from the publication set, and push the approved changes.
+
+## 8. Conclusion
+
+The internal results show that ESM-2 representations provide a useful basis for top-level EC classification under the project's cluster-aware split. However, the external evaluation shows weaker performance and pronounced class-specific errors. The current evidence supports further development of a computational candidate-prioritization workflow, but it does not establish a validated novel-enzyme discovery system or experimentally confirmed enzyme function.

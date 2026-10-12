@@ -1,0 +1,75 @@
+Entry,Protein names,Organism,EC number,actual_class,predicted_class,correct
+A0A0J1BB00,Beta-ketoacyl-acyl-carrier-protein synthase I (EC 2.3.1.41),Rhodopirellula islandica,2.3.1.41,2,6,False
+A0A103DXG1,Beta-ketoacyl-acyl-carrier-protein synthase I (EC 2.3.1.41),Burkholderia singularis,2.3.1.41,2,6,False
+A0A1B4Z9A6,Beta-ketoacyl-acyl-carrier-protein synthase I (EC 2.3.1.41),Actinomadura fulva subsp. indica,2.3.1.41,2,6,False
+A0A1G9RRH1,Beta-ketoacyl-acyl-carrier-protein synthase I (EC 2.3.1.41),Catalinimonas alkaloidigena,2.3.1.41,2,6,False
+A0A1S1Z4R0,Beta-ketoacyl-acyl-carrier-protein synthase I (EC 2.3.1.41),Flammeovirga pacifica,2.3.1.41,2,6,False
+A0A2G1W3H8,Beta-ketoacyl-acyl-carrier-protein synthase I (EC 2.3.1.41),Rhodopirellula bahusiensis,2.3.1.41,2,6,False
+A0A2U1TX96,Beta-ketoacyl-acyl-carrier-protein synthase I (EC 2.3.1.41),Brenneria corticis,2.3.1.41,2,6,False
+A0A318KBU4,Beta-ketoacyl-acyl-carrier-protein synthase I (EC 2.3.1.41),Nocardia tenerifensis,2.3.1.41,2,6,False
+A0A367QS97,Beta-ketoacyl-acyl-carrier-protein synthase I (EC 2.3.1.41),Nostoc minutum NIES-26,2.3.1.41,2,6,False
+A0A3A9Z978,Beta-ketoacyl-acyl-carrier-protein synthase I (EC 2.3.1.41),Streptomyces hoynatensis,2.3.1.41,2,6,False
+A0A4D4L745,Beta-ketoacyl-acyl-carrier-protein synthase I (EC 2.3.1.41),Streptomyces violaceusniger,2.3.1.41,2,6,False
+A0A518AH04,Beta-ketoacyl-acyl-carrier-protein synthase I (EC 2.3.1.41),Aeoliella mucimassa,2.3.1.41,2,6,False
+A0A6I4WFL2,Beta-ketoacyl-acyl-carrier-protein synthase I (EC 2.3.1.41),Actinomadura rayongensis,2.3.1.41,2,6,False
+A0A7G1KM51,Beta-ketoacyl-acyl-carrier-protein synthase I (EC 2.3.1.41),Nocardia wallacei,2.3.1.41,2,6,False
+A0A7H1Q9H8,Beta-ketoacyl-acyl-carrier-protein synthase I (EC 2.3.1.41),Streptomyces griseofuscus,2.3.1.41,2,6,False
+A0A077PAS1,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Xenorhabdus bovienii str. kraussei Quebec,3.1.2.20,3,1,False
+A0A085G773,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Ewingella americana (strain ATCC 33852 / DSM 4580 / CCUG 14506 / JCM 5911 / LMG 7869 / NCTC 12157 / CDC 1468-78),3.1.2.20,3,4,False
+A0A085U5C2,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Yersinia ruckeri,3.1.2.20,3,5,False
+A0A089RD36,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Cedecea neteri,3.1.2.20,3,1,False
+A0A0D7LP77,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Citrobacter freundii,3.1.2.20,3,5,False
+A0A0H2V5I7,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Escherichia coli O6:H1 (strain CFT073 / ATCC 700928 / UPEC),3.1.2.20,3,1,False
+A0A0H2VV70,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Shigella flexneri,3.1.2.20,3,5,False
+A0A0H3DSW1,Thioesterase 1/protease 1/lysophospholipase L1 (EC 3.1.1.2) (EC 3.1.1.5) (EC 3.1.2.14) (EC 3.1.2.2) (Acyl-CoA thioesterase 1) (Acyl-CoA thioesterase I) (Arylesterase) (Lysophospholipase L1) (Oleoyl-[acyl-carrier-protein] hydrolase) (Phospholipid degradation C) (Protease 1) (Protease I) (Thioesterase I/protease I),Edwardsiella tarda (strain FL6-60),3.1.1.2; 3.1.1.5; 3.1.2.14; 3.1.2.2,3,5,False
+A0A0H3H9K5,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Klebsiella michiganensis (strain ATCC 8724 / DSM 4798 / JCM 20051 / NBRC 3318 / NRRL B-199 / KCTC 1686 / BUCSAV 143 / CCM 1901),3.1.2.20,3,5,False
+A0A0T9UHQ9,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Yersinia aldovae,3.1.2.20,3,5,False
+A0A0U3VEY3,Thioesterase 1/protease 1/lysophospholipase L1 (EC 3.1.1.2) (EC 3.1.1.5) (EC 3.1.2.14) (EC 3.1.2.2) (Acyl-CoA thioesterase 1) (Acyl-CoA thioesterase I) (Arylesterase) (Lysophospholipase L1) (Oleoyl-[acyl-carrier-protein] hydrolase) (Phospholipid degradation C) (Protease 1) (Protease I) (Thioesterase I/protease I),Pantoea vagans,3.1.1.2; 3.1.1.5; 3.1.2.14; 3.1.2.2,3,5,False
+A0A0X4EQG9,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Enterobacter genomosp. O,3.1.2.20,3,5,False
+A0A155LJI4,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Enterobacter roggenkampii,3.1.2.20,3,5,False
+A0A1B7JI59,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Kluyvera georgiana ATCC 51603,3.1.2.20,3,5,False
+A0A1C4AMU4,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Kosakonia oryzendophytica,3.1.2.20,3,5,False
+A0A1I5AD41,Thioesterase 1/protease 1/lysophospholipase L1 (EC 3.1.1.2) (EC 3.1.1.5) (EC 3.1.2.14) (EC 3.1.2.2) (Acyl-CoA thioesterase 1) (Acyl-CoA thioesterase I) (Arylesterase) (Lysophospholipase L1) (Oleoyl-[acyl-carrier-protein] hydrolase) (Phospholipid degradation C) (Protease 1) (Protease I) (Thioesterase I/protease I),Candidatus Pantoea varia,3.1.1.2; 3.1.1.5; 3.1.2.14; 3.1.2.2,3,5,False
+A0A1W6B197,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Pantoea alhagi,3.1.2.20,3,5,False
+A0A1X0WJ84,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Rouxiella badensis,3.1.2.20,3,5,False
+A0A1Y0L6J4,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Tatumella citrea (Pantoea citrea),3.1.2.20,3,5,False
+A0A2K1QC28,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Mixta theicola,3.1.2.20,3,5,False
+A0A2K4AEI7,Protein/nucleic acid deglycase HchA (EC 3.1.2.-) (EC 3.5.1.124) (Maillard deglycase),Staphylococcus schweitzeri,3.1.2.-; 3.5.1.124,3,4,False
+A0A2M9WAK3,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Pantoea rodasii,3.1.2.20,3,5,False
+A0A2S6PFL4,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Escherichia albertii,3.1.2.20,3,5,False
+A0A317Q107,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Mangrovibacter plantisponsor,3.1.2.20,3,5,False
+A0A3N4BCC7,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Yersinia pestis,3.1.2.20,3,5,False
+A0A433N603,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Pectobacterium brasiliense,3.1.2.20,3,5,False
+A0A4R0HWW7,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Kosakonia quasisacchari,3.1.2.20,3,5,False
+A0A4R3VNZ4,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Samsonia erythrinae,3.1.2.20,3,5,False
+A0A502GRW5,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Ewingella americana,3.1.2.20,3,5,False
+A0A506Q3Z1,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Pantoea deleyi,3.1.2.20,3,5,False
+A0A5B8IAR3,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Dickeya poaceiphila,3.1.2.20,3,5,False
+A0A5R9LQ77,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Klebsiella indica,3.1.2.20,3,5,False
+A0A7W9G8M7,Beta-ketoacyl-acyl-carrier-protein synthase I (EC 2.3.1.41),Nonomuraea jabiensis,2.3.1.41,2,6,False
+A0A7X5TG40,Thioesterase 1/protease 1/lysophospholipase L1 (EC 3.1.1.2) (EC 3.1.1.5) (EC 3.1.2.14) (EC 3.1.2.2) (Acyl-CoA thioesterase 1) (Acyl-CoA thioesterase I) (Arylesterase) (Lysophospholipase L1) (Oleoyl-[acyl-carrier-protein] hydrolase) (Phospholipid degradation C) (Protease 1) (Protease I) (Thioesterase I/protease I),Photorhabdus cinerea,3.1.1.2; 3.1.1.5; 3.1.2.14; 3.1.2.2,3,5,False
+A0A845SJC0,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Acerihabitans arboris,3.1.2.20,3,5,False
+A0A857F3F5,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Yersinia canariae,3.1.2.20,3,5,False
+A0A8A4TRE3,Beta-ketoacyl-acyl-carrier-protein synthase I (EC 2.3.1.41),Sulfidibacter corallicola,2.3.1.41,2,6,False
+A0A8J6ZNQ0,Beta-ketoacyl-acyl-carrier-protein synthase I (EC 2.3.1.41),Desmonostoc muscorum LEGE 12446,2.3.1.41,2,6,False
+A0A9J6Q0D1,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Silvania hatchlandensis,3.1.2.20,3,1,False
+A0A9X8P6C7,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Pectobacterium zantedeschiae,3.1.2.20,3,5,False
+A0AA41XZG2,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Brenneria izbisi,3.1.2.20,3,5,False
+A0AA94GZW8,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Kosakonia oryzae,3.1.2.20,3,5,False
+A0AAC8VNM1,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Cronobacter universalis NCTC 9529,3.1.2.20,3,5,False
+A0AAC9HRH3,Beta-ketoacyl-acyl-carrier-protein synthase I (EC 2.3.1.41),Actinoalloteichus hymeniacidonis,2.3.1.41,2,6,False
+A0AAE3GHY2,Beta-ketoacyl-acyl-carrier-protein synthase I (EC 2.3.1.41),Goodfellowiella coeruleoviolacea,2.3.1.41,2,6,False
+A0AAE3RE20,Beta-ketoacyl-acyl-carrier-protein synthase I (EC 2.3.1.41),Xanthocytophaga agilis,2.3.1.41,2,1,False
+A0AAE4BUG5,Beta-ketoacyl-acyl-carrier-protein synthase I (EC 2.3.1.41),Aureibacter tunicatorum,2.3.1.41,2,1,False
+A0AAJ3HUI0,Acyl-CoA thioesterase 2 (EC 3.1.2.20) (Thioesterase II),Proteus hauseri ATCC 700826,3.1.2.20,3,5,False
+A0AAN1NPL9,Thioesterase 1/protease 1/lysophospholipase L1 (EC 3.1.1.2) (EC 3.1.1.5) (EC 3.1.2.14) (EC 3.1.2.2) (Acyl-CoA thioesterase 1) (Acyl-CoA thioesterase I) (Arylesterase) (Lysophospholipase L1) (Oleoyl-[acyl-carrier-protein] hydrolase) (Phospholipid degradation C) (Protease 1) (Protease I) (Thioesterase I/protease I),Pantoea vagans,3.1.1.2; 3.1.1.5; 3.1.2.14; 3.1.2.2,3,5,False
+A0A239DFZ2,NADH-quinone oxidoreductase subunit B (EC 7.1.1.-) (NADH dehydrogenase I subunit B) (NDH-1 subunit B),Actinomadura meyerae,7.1.1.-,7,2,False
+A0A401FRI1,Ion-translocating oxidoreductase complex subunit B (EC 7.-.-.-) (Rnf electron transport complex subunit B),Desulfonema ishimotonii,7.-.-.-,7,1,False
+A0A6J7ZJJ7,NAD(P)H-quinone oxidoreductase subunit K (EC 7.1.1.-) (NAD(P)H dehydrogenase I subunit K) (NDH-1 subunit K) (NDH-K),Planktothrix rubescens CCAP 1459/22,7.1.1.-,7,2,False
+A0A975T5E8,NAD(P)H-quinone oxidoreductase subunit K (EC 7.1.1.-) (NAD(P)H dehydrogenase I subunit K) (NDH-1 subunit K) (NDH-K),Richelia sinica FACHB-800,7.1.1.-,7,2,False
+A0AAU9ESR1,Ion-translocating oxidoreductase complex subunit B (EC 7.-.-.-) (Rnf electron transport complex subunit B),Desulfoferula mesophila,7.-.-.-,7,1,False
+A0ABT2N748,NAD(P)H-quinone oxidoreductase subunit K (EC 7.1.1.-) (NAD(P)H dehydrogenase I subunit K) (NDH-1 subunit K) (NDH-K),Laspinema olomoucense D3b,7.1.1.-,7,4,False
+A0ABV4XE78,NAD(P)H-quinone oxidoreductase subunit K (EC 7.1.1.-) (NAD(P)H dehydrogenase I subunit K) (NDH-1 subunit K) (NDH-K),Floridaenema aerugineum BLCC-F46,7.1.1.-,7,4,False
+A0ABX4WMB2,NAD(P)H-quinone oxidoreductase subunit K (EC 7.1.1.-) (NAD(P)H dehydrogenase I subunit K) (NDH-1 subunit K) (NDH-K),Cylindrospermopsis raciborskii C07,7.1.1.-,7,2,False
+A0A0C1N2S5,NAD(P)H-quinone oxidoreductase subunit K (EC 7.1.1.-) (NAD(P)H dehydrogenase I subunit K) (NDH-1 subunit K) (NDH-K),Tolypothrix bouteillei VB521301,7.1.1.-,7,4,False
+A0A480A9W2,NAD(P)H-quinone oxidoreductase subunit K (EC 7.1.1.-) (NAD(P)H dehydrogenase I subunit K) (NDH-1 subunit K) (NDH-K),Sphaerospermopsis reniformis,7.1.1.-,7,2,False

@@ -1,0 +1,19 @@
+{
+  "evaluation_type": "preliminary external evaluation",
+  "n_proteins": 138,
+  "accuracy": 0.463768115942029,
+  "balanced_accuracy": 0.559931506849315,
+  "macro_f1_all_7_classes": 0.3538247466818895,
+  "weighted_f1": 0.5075992847731978,
+  "classes_present": [
+    1,
+    2,
+    3,
+    6,
+    7
+  ],
+  "embedding_model": "facebook/esm2_t12_35M_UR50D",
+  "embedding_dimension": 480,
+  "classifier": "StandardScaler + RBF SVC(C=10, class_weight=balanced)",
+  "caveat": "External embeddings use reconstructed pooling; verify against the original implementation before treating as final."
+}

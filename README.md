@@ -1,4 +1,4 @@
-# Low-Data Protein Language Model for Enzyme Function Prediction and Candidate Prioritization
+﻿# Low-Data Protein Language Model for Enzyme Function Prediction and Candidate Prioritization
 
 ## Project overview
 
@@ -9,7 +9,7 @@ The project also explores how predictions might support candidate prioritization
 ## Dataset and split design
 
 - Model-ready reviewed UniProt sequences: **2,673**
-- Top-level EC classes: 1–7
+- Top-level EC classes: 1-7
 - MMseqs2 clustering parameters: minimum sequence identity 30%, coverage 80%
 - Total clusters before splitting: 1,427
 - Cluster-aware partitions: training 1,757; validation 377; test 539
@@ -90,15 +90,40 @@ The eight flags appear inconsistent with the current sequence values and may be 
 
 ## External UniProt evaluation attempt
 
-A separate UniProt collection attempt produced 179 unique accessions after excluding the original dataset. Only 2 records had a single top-level EC class under the parsing rule used for the initial external evaluation; 177 had annotations spanning multiple top-level classes. The two unambiguous records were insufficient for meaningful external performance metrics. **No valid external performance evaluation was completed.** The 179-record pool should not be presented as a balanced benchmark, and the queried class must not be treated as ground truth when a protein has multiple EC annotations.
+A separate UniProt collection attempt produced 179 unique accessions after excluding the original dataset. Only 2 records had a single top-level EC class under the parsing rule used for the initial external evaluation; 177 had annotations spanning multiple top-level classes. The two unambiguous records were insufficient for meaningful external performance metrics. **No valid external performance evaluation was completed in this initial attempt.** The 179-record pool should not be presented as a balanced benchmark, and the queried class must not be treated as ground truth when a protein has multiple EC annotations.
 
+## External Evaluation and Similarity Audit
+
+A separate external evaluation was completed using 138 proteins collected separately from the original model-ready dataset. The retained subset contained proteins from EC classes 1, 2, 3, 6, and 7. Classes 4 and 5 were absent, so their external performance could not be evaluated.
+
+The evaluation used 480-dimensional embeddings from `facebook/esm2_t12_35M_UR50D`, followed by `StandardScaler` and an RBF Support Vector Classifier (`C=10`, balanced class weights).
+
+| Metric | External result |
+|---|---:|
+| Proteins evaluated | 138 |
+| Accuracy | 46.38% |
+| Balanced accuracy | 55.99% |
+| Macro F1 (all seven classes) | 0.3538 |
+| Weighted F1 | 0.5076 |
+
+The similarity audit examined 222 records: 138 lower-local-similarity records were retained, while 84 potentially related or very close matches were excluded. This filtering disproportionately excluded class-7 proteins, changing the class distribution of the retained subset.
+
+The original-embedding evaluation artifacts are stored in `protein_project/results/external_evaluation/original_method/`. The original-method comparison reproduced the predictions and labels for all 138 retained proteins, resolving the initial concern about reconstructed embedding pooling.
+
+### Interpretation
+
+External performance was weaker than the internal held-out test performance. Class 2 had zero recall in the retained external subset, while class 3 recall was approximately 42.47% and class 7 recall was 37.50%. These results show that good internal performance does not guarantee reliable predictions on separately collected proteins.
+
+The retained subset is not a representative benchmark of all enzymes. Similarity filtering changes the evaluated population, and the excluded subset is also compositionally biased. These results should be interpreted as a diagnostic external evaluation, not a definitive estimate of generalization to novel enzyme families.
+
+Predictions are computational hypotheses, not experimental confirmation of enzyme activity or novelty. The detailed experiment history is documented in [`protein_project_complete_progress.md`](protein_project_complete_progress.md).
 ## Interpretation and limitations
 
 - The model predicts a broad top-level EC class, not a complete EC number, substrate specificity, or experimentally validated function.
 - The held-out test set has been evaluated; do not use it for further tuning. For a new final unbiased evaluation after substantial changes, obtain a fresh external or temporally separated test set.
 - Cluster-aware splitting reduces leakage at the chosen MMseqs2 thresholds but cannot guarantee complete absence of remote homology or biological relatedness.
 - The low-data curves use the existing validation set. Cluster-aware subsets preserve whole training clusters, but the experiment is not an independent test of entirely unseen protein families.
-- The external collection attempt did not produce enough unambiguous records for evaluation.
+- The initial UniProt collection attempt did not produce enough unambiguous records for evaluation. A later 138-protein external diagnostic evaluation was completed, but its similarity-filtered, imbalanced subset is not a definitive benchmark of generalization.
 - Candidate-ranking scores, confidence, and sequence novelty are computational evidence for prioritization, not proof of novelty or catalytic activity. A suitable separate candidate set and validated ranking procedure are still needed.
 - The eight inherited duplicate flags require provenance review; do not silently delete those records.
 
@@ -119,10 +144,14 @@ Keep the cluster-aware splits fixed, fit transformations on training data, use v
 - Final test metric file: `final_test_metrics.json`
 - Per-class test report: `final_test_classification_report.csv`
 - Confusion matrix: `final_test_confusion_matrix.csv` and `final_test_confusion_matrix.png`
+- External evaluation and similarity-audit results: `protein_project/results/external_evaluation/`
+- Filtered microbial candidate pool: `protein_project/results/candidate_discovery/microbial_candidate_pool_filtered.csv`
+- Filtered EC-balanced candidate pool: `protein_project/results/candidate_discovery/microbial_ec_balanced_filtered.csv`
+- Single-top-level-class external evaluation pool: `protein_project/results/candidate_discovery/microbial_external_eval_single_class.csv`
 - Detailed history and experiment log: `protein_project_complete_progress.md`
 
 ## Current status and next steps
 
-**Completed:** dataset preparation and audit; MMseqs2 clustering and cluster-aware splitting; amino-acid composition and k-mer baselines; ESM-2 embedding extraction; validation-based SVM selection; one final held-out test evaluation; protein-level and cluster-aware low-data experiments; initial duplicate-flag audit.
+**Completed:** dataset preparation and integrity audits; MMseqs2 clustering and cluster-aware splitting; amino-acid composition and k-mer baselines; ESM-2 embedding extraction; validation-based SVM selection; held-out internal test evaluation; protein-level and cluster-aware low-data experiments; conditional hierarchical EC class-5 analysis; external evaluation and sequence-similarity audit; consolidation of selected candidate-pool and external-evaluation artifacts.
 
-**Remaining:** reconcile the duplicate flag's provenance; ensure low-data CSVs/plots are downloaded or committed if they are to be part of the repository; finalize error analysis, methodology, limitations, and report; decide whether to implement a minimal candidate-ranking prototype using a separate suitable candidate set. The attempted external UniProt pool is not sufficient for external benchmarking.
+**Remaining:** investigate provenance of inherited duplicate flags; recover and version low-data CSV summaries/plots if provenance is verified; complete a transparent candidate-ranking workflow with documented criteria; verify the cleaned notebook end-to-end using required inputs and cached artifacts; finalize the research report. External evaluation is complete as a preliminary diagnostic, but a representative independently designed benchmark is still needed for stronger generalization claims.
